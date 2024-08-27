@@ -28,6 +28,7 @@ export const signup = async (req, res) => {
       verificationTokenExpires: Date.now() + 3600000,
     });
     await newUser.save();
+
     res.status(201).json({
       success: true,
       message: "User created successfully",
