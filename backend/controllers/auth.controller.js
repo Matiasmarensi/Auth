@@ -1,6 +1,7 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateVerificationCode } from "../utils/generateVerificationCode.js";
+import { generateToken } from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
   try {
@@ -12,6 +13,7 @@ export const signup = async (req, res) => {
       });
     }
     const userFound = await User.findOne({ email });
+    console.log(userFound);
     if (userFound) {
       return res.status(400).json({
         success: false,
@@ -29,14 +31,20 @@ export const signup = async (req, res) => {
     });
     await newUser.save();
 
+    generateToken(res, newUser._id);
+
     res.status(201).json({
       success: true,
       message: "User created successfully",
+      user: {
+        ...newUser._doc,
+        password: null,
+      },
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: error.message,
     });
   }
 };
