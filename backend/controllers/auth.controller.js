@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateVerificationCode } from "../utils/generateVerificationCode.js";
 import { generateToken } from "../utils/generateToken.js";
+import { sendVerificationEmail } from "../mail/emails.js";
 
 export const signup = async (req, res) => {
   try {
@@ -32,6 +33,7 @@ export const signup = async (req, res) => {
     await newUser.save();
 
     generateToken(res, newUser._id);
+    await sendVerificationEmail(email, verificationToken);
 
     res.status(201).json({
       success: true,
