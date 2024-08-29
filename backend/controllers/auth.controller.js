@@ -2,7 +2,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateVerificationCode } from "../utils/generateVerificationCode.js";
 import { generateToken } from "../utils/generateToken.js";
-import { sendVerificationEmail } from "../mail/emails.js";
+import { sendVerificationEmail, sendWelmcomeEmail } from "../mail/emails.js";
 
 export const signup = async (req, res) => {
   try {
@@ -79,7 +79,9 @@ export const verifyEmail = async (req, res) => {
         password: null,
       },
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const login = async (req, res) => {
   res.send("Hello World");
