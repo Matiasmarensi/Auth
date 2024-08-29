@@ -5,23 +5,24 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verify Your Email</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #2C3E50; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: linear-gradient(to right, #3498DB, #2980B9); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Verify Your Email</h1>
+<body style="font-family: 'Roboto', sans-serif; line-height: 1.8; color: #34495E; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #F7F9F9;">
+  <div style="background: linear-gradient(to right, #8E44AD, #3498DB); padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
+    <h1 style="color: #FFFFFF; margin: 0; font-size: 28px;">Verify Your Email</h1>
   </div>
-  <div style="background-color: #ECF0F1; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <p>Hello,</p>
-    <p>Thank you for signing up! Your verification code is:</p>
-    <div style="text-align: center; margin: 30px 0;">
-      <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #3498DB;">{verificationCode}</span>
+  <div style="background-color: #FFFFFF; padding: 25px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <p style="font-size: 18px; color: #2C3E50;">Hello,</p>
+    <p style="font-size: 16px;">Thank you for signing up! Your verification code is:</p>
+    <div style="text-align: center; margin: 40px 0;">
+      <span style="font-size: 36px; font-weight: bold; letter-spacing: 6px; color: #8E44AD;">{verificationCode}</span>
     </div>
-    <p>Enter this code on the verification page to complete your registration.</p>
-    <p>This code will expire in 15 minutes for security reasons.</p>
-    <p>If you didn't create an account with us, please ignore this email.</p>
-    <p>Best regards,<br>Your App Team</p>
+    <p style="font-size: 16px;">Enter this code on the verification page to complete your registration.</p>
+    <p style="font-size: 16px;">This code will expire in 15 minutes for security reasons.</p>
+    <p style="font-size: 16px;">If you didn't create an account with us, please ignore this email.</p>
+    <p style="font-size: 18px; margin-top: 20px;">Best regards,<br>Your App Team</p>
   </div>
-  <div style="text-align: center; margin-top: 20px; color: #95A5A6; font-size: 0.8em;">
+  <div style="text-align: center; margin-top: 25px; color: #BDC3C7; font-size: 0.9em;">
     <p>This is an automated message, please do not reply to this email.</p>
   </div>
 </body>

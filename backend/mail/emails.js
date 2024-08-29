@@ -17,3 +17,26 @@ export const sendVerificationEmail = async (email, verificationToken) => {
     throw new Error("Failed to send verification email");
   }
 };
+
+export const sendWelmcomeEmail = async (email, name) => {
+  const recipient = [{ email }];
+  try {
+    const response = await mailTrapClient.send({
+      from: sender,
+      to: recipient,
+      template_uuid: "f481a32a-7f82-42b2-9d49-645ccb9bd423",
+      template_variables: {
+        company_info_name: "Test_Company_info_name",
+        name: "Test_Name",
+        company_info_address: "Test_Company_info_address",
+        company_info_city: "Test_Company_info_city",
+        company_info_zip_code: "Test_Company_info_zip_code",
+        company_info_country: "Test_Company_info_country",
+      },
+    });
+    console.log("Welcome  email sent successfully", response);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to send welcome email");
+  }
+};
