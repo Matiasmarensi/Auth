@@ -80,12 +80,19 @@ export const verifyEmail = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 export const login = async (req, res) => {
   res.send("Hello World");
 };
 export const logout = async (req, res) => {
-  res.send("Hello World");
+  res.clearCookie("token");
+  res.status(200).json({
+    success: true,
+    message: "Logged out successfully",
+  });
 };
