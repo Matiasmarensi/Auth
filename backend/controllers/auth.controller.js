@@ -1,8 +1,9 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import crypto from "crypto";
 import { generateVerificationCode } from "../utils/generateVerificationCode.js";
 import { generateToken } from "../utils/generateToken.js";
-import { sendVerificationEmail, sendWelmcomeEmail } from "../mail/emails.js";
+import { sendVerificationEmail, sendWelmcomeEmail, sendPasswordResetEmail } from "../mail/emails.js";
 
 export const signup = async (req, res) => {
   try {
@@ -42,6 +43,32 @@ export const signup = async (req, res) => {
         ...newUser._doc,
         password: null,
       },
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+export const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    const resetToken = crypto.randomBytes(20).toString("hex");
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000;
+    await user.save();
+    await sendPasswordResetEmail(user.email, "http://localhost:3000/reset-password/" + resetToken);
+    res.status(200).json({
+      success: true,
+      message: "Email sent successfully",
     });
   } catch (error) {
     res.status(500).json({
