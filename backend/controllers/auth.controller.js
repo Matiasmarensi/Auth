@@ -77,6 +77,21 @@ export const forgotPassword = async (req, res) => {
     });
   }
 };
+export const resetPassword = async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { password } = req.body;
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 export const verifyEmail = async (req, res) => {
   const { code } = req.body;
