@@ -3,7 +3,12 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { generateVerificationCode } from "../utils/generateVerificationCode.js";
 import { generateToken } from "../utils/generateToken.js";
-import { sendVerificationEmail, sendWelmcomeEmail, sendPasswordResetEmail } from "../mail/emails.js";
+import {
+  sendVerificationEmail,
+  sendWelmcomeEmail,
+  sendPasswordResetEmail,
+  sendResetSuccessEmail,
+} from "../mail/emails.js";
 
 export const signup = async (req, res) => {
   try {
@@ -95,6 +100,7 @@ export const resetPassword = async (req, res) => {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
+    await sendResetSuccessEmail(user.email);
     res.status(200).json({
       success: true,
       message: "Password reset successfully",
