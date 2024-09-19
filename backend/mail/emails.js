@@ -1,5 +1,9 @@
 import { mailTrapClient, recipients, sender } from "./config.js";
-import { PASSWORD_RESET_REQUEST_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE } from "./emailTemplates.js";
+import {
+  PASSWORD_RESET_REQUEST_TEMPLATE,
+  PASSWORD_RESET_SUCCESS_TEMPLATE,
+  VERIFICATION_EMAIL_TEMPLATE,
+} from "./emailTemplates.js";
 
 export const sendVerificationEmail = async (email, verificationToken) => {
   const recipient = [{ email }];
@@ -65,7 +69,7 @@ export const sendResetSuccessEmail = async (email) => {
       from: sender,
       to: recipient,
       subject: "Password Reset Successful",
-      html: "<p>Your password has been successfully reset.</p>",
+      html: PASSWORD_RESET_SUCCESS_TEMPLATE,
       category: "Password Reset",
     });
     console.log("Password reset success email sent successfully", response);
