@@ -1,30 +1,13 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import BgShapes from "./components/BgShapes.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1
-        className="text-3xl font-bold underline 
-        text-red-500
-        text-center
-        bg-slate-500
-        p-5
-        rounded-md
-        shadow-md
-        shadow-red-500
-        hover:bg-red-500 hover:text-white
-          
-        
-  "
-      >
-        hola
-      </h1>
-    </>
+    <div className="min-h-screen bg-gradient-to-br from-orange-600 to-orange-300 flex items-center justify-center relative overflow-hidden ">
+      <BgShapes color="bg-orange-100" size="w-64 h-64" top="-5% " left="10%" delay={0} />
+      <BgShapes color="bg-orange-900" size="w-48 h-48" top="70% " left="80%" delay={5} />
+
+      <BgShapes color="bg-orange-100" size="w-32 h-32" top="40% " left="-10%" delay={2} />
+    </div>
   );
 }
 
