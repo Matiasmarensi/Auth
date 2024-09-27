@@ -1,9 +1,9 @@
+import { Route, Routes } from "react-router-dom";
 import BgShapes from "./components/BgShapes.jsx";
 import Login from "./pages/Login.jsx";
 
 import Signup from "./pages/Signup.jsx";
 
-import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-600 to-orange-300 flex items-center justify-center relative overflow-hidden ">
