@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Input from "../components/Input";
 import { Lock, Mail, User } from "lucide-react";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,7 +46,24 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <motion.button
+            className="mt-5 w-full py-5 px-4 bg-gradient-to-r from-orange-600 to-orange-300 text-white font-bold rounded-lg shadow-xl hover:scale-105 transition duration-100 "
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            type="submit"
+          >
+            Sign Up
+          </motion.button>
         </form>
+      </div>
+      <div className="px-8 py-4 bg-orange-950 opacity-30 flex justify-center">
+        <p className="text-white text-sm">
+          {" "}
+          Already have an account?{" "}
+          <Link to="/login" className="text-orange-200 hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </motion.div>
   );
