@@ -3,6 +3,7 @@ import BgShapes from "./components/BgShapes.jsx";
 import Login from "./pages/Login.jsx";
 
 import Signup from "./pages/Signup.jsx";
+import EmailVerification from "./pages/EmailVerification.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={"home"} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/verify-email" element={<EmailVerification />} />
         {/* 
         <Route path="*" element={<NotFound />} /> */}
       </Routes>
