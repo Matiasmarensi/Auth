@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const EmailVerification = () => {
   const [code, setCode] = useState(["", "", "", "", "", "", ""]);
@@ -7,10 +8,10 @@ const EmailVerification = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="max-w-md w-full bg-gray-50 bg-opacity-35 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl p-8 overflow-hidden">
       <h1 className="text-2xl font-bold mb-4">Email Verification</h1>
       <p className="text-gray-600 mb-8">Enter the 6-digit code sent to your email address</p>
-      <div className="flex space-x-4">
+      <div className="flex justify-center gap-3">
         {code.map((value, index) => (
           <input
             key={index}
