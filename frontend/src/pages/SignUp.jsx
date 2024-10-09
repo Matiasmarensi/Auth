@@ -3,18 +3,25 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Input from "../components/Input";
 import { Lock, Mail, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import PasswordBar from "../components/PasswordBar";
 import { useAuthStore } from "../store/authStore";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSignUp = (e) => {
+  const { signUp, error, loading } = useAuthStore();
+  const handleSignUp = async (e) => {
     e.preventDefault();
-
-    console.log(data);
+    try {
+      await signUp(name, email, password);
+      navigate("/verify-email");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <motion.div
@@ -49,6 +56,7 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className="text-red-500 text-sm">{error}</p>}
           <PasswordBar password={password} />
           <motion.button
             className="mt-5 w-full py-5 px-4 bg-gradient-to-r from-orange-600 to-orange-300 text-white font-bold rounded-lg shadow-xl hover:scale-105 transition duration-100 "
@@ -57,6 +65,7 @@ const SignUp = () => {
             type="submit"
           >
             Sign Up
+            {loading && <span className="loading loading-dots loading-xs"></span>}
           </motion.button>
         </form>
       </div>
