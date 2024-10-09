@@ -5,6 +5,8 @@ import Input from "../components/Input";
 import { Lock, Mail, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import PasswordBar from "../components/PasswordBar";
+import { useAuthStore } from "../store/authStore";
+
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
